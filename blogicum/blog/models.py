@@ -66,7 +66,7 @@ class Category(CommonInfo):
 
 class Post(CommonInfo):
     title = models.CharField(
-        max_length=settings.MAX_LENGTH, verbose_name="Заголовок"
+        max_length=const.MAX_LENGTH, verbose_name="Заголовок"
     )
     text = models.TextField(verbose_name="Текст")
     pub_date = models.DateTimeField(
@@ -107,7 +107,7 @@ class Post(CommonInfo):
         default_related_name = "posts"
 
     def __str__(self):
-        return Truncator(self.title).chars(settings.MAX_LENGTH)
+        return Truncator(self.title).chars(const.MAX_LENGTH)
 
     def get_absolute_url(self):
         return reverse("blog:post_detail", kwargs={"post_id": self.pk})
